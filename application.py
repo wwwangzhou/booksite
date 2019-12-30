@@ -18,7 +18,8 @@ Session(app)
 
 @app.route("/")
 def index():
-    index_page = render_template("index.html")
+    headline = "Welcome to the booksite!"
+    index_page = render_template("index.html", headline=headline)
     return index_page
 
 @app.route("/user")

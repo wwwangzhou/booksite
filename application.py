@@ -21,9 +21,10 @@ Session(app)
 def index():
     now = datetime.datetime.now()
     new_year = now.month == 1 and now.day == 1
+    title = "bookees"
     headline = "Welcome to the booksite!"
     body = "Is today New Year ?"
-    index_page = render_template("index.html", headline=headline, body=body, new_year=new_year)
+    index_page = render_template("index.html", title=title, headline=headline, body=body, new_year=new_year)
     return index_page
 
 @app.route("/user")

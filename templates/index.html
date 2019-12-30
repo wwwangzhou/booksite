@@ -1,15 +1,18 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bookees!</title>
-    </head>
-    <body>
-      <h1>{{ headline }}</h1>
-        {{ body }}
-        {% if new_year %}
-            <h1>Yes! Happy New Year!</h1>
-        {% else %}
-            <h1>NO</h1>
-        {% endif %}
-    </body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block heading %}
+    {{ headline }}
+{% endblock %}
+
+{% block body %}
+    {{ body }}
+    {% if new_year %}
+         <h1>Yes! Happy New Year!</h1>
+    {% else %}
+         <h1>NO</h1>
+    {% endif %}
+{% endblock %}

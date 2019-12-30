@@ -18,7 +18,7 @@ Session(app)
 
 @app.route("/")
 def index():
-    return "In the progress !"
+    return "index.html"
 
 @app.route("/user")
 def user():

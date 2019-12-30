@@ -18,7 +18,8 @@ Session(app)
 
 @app.route("/")
 def index():
-    render_template "index.html"
+    index_page = render_template("index.html")
+    return index_page
 
 @app.route("/user")
 def user():

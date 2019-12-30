@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>My Website!</title>
+        <title>Bookees!</title>
     </head>
     <body>
       <h1>{{ headline }}</h1>
-        Hello, world!
+        {{ body }}
+        {% if new_year %}
+            <h1>Yes! Happy New Year!</h1>
+        {% else %}
+            <h1>NO</h1>
+        {% endif %}
     </body>
 </html>

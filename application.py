@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, session
+from flask import Flask,render_template, session
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -18,7 +18,7 @@ Session(app)
 
 @app.route("/")
 def index():
-    return "index.html"
+    render_template "index.html"
 
 @app.route("/user")
 def user():

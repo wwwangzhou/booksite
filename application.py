@@ -1,7 +1,7 @@
 import os,datetime
 
 
-from flask import Flask,render_template, session
+from flask import Flask,render_template, session, request
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -17,21 +17,26 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-@app.route("/")
+reviews = []
+
+@app.route("/", methods=["GET", "POST"])
 def index():
     now = datetime.datetime.now()
     new_year = now.month == 1 and now.day == 1
     title = "bookees"
     headline = "Welcome to the booksite!"
     body = "Is today New Year ?"
-    index_page = render_template("index.html", title=title, headline=headline, body=body, new_year=new_year)
+    if request.method == "POST":
+        review = request.form.get("review")
+        reviews.append(review)
+    index_page = render_template("index.html", title=title, headline=headline, body=body, new_year=new_year, reviews = reviews)
     return index_page
 
 @app.route("/user")
 def user():
     return "User page"
 
-@app.route("/<string:name>")
-def hello(name):
-    name = name.capitalize()
-    return f"<h1>Hello, {name}</h1>"
+# @app.route("/<string:name>")
+# def hello(name):
+#     name = name.capitalize()
+#     return f"<h1>Hello, {name}</h1>"

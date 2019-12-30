@@ -1,21 +1,10 @@
 {% extends "layout.html" %}
 
-{% block title %}
-    {{ title }}
-{% endblock %}
-
 {% block heading %}
-    {{ headline }}
+   Reviews
 {% endblock %}
 
 {% block body %}
-
-    {{ body }}
-    {% if new_year %}
-         <h1>Yes! Happy New Year!</h1>
-    {% else %}
-         <h1>NO</h1>
-    {% endif %}
 
     <ul>
         {% for review in reviews %}
@@ -23,7 +12,7 @@
         {% endfor %}
     </ul>
 
-    <form action="{{ url_for('index') }}" method="post">
+    <form action="{{ url_for('input') }}" method="post">
         <input type="text" name="review" placeholder="Type your review here">
         <button>Add review</button>
     </form>

@@ -78,6 +78,7 @@ def index():
 def about():
     return "<h1>About Page</h1>"
 
+# to do: user management section
 @app.route("/user")
 def user():
     return "User page"

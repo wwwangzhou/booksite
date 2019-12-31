@@ -11,6 +11,7 @@ engine = create_engine(os.getenv("DATABASE_URL"))
 # allow each user have her/his own workspace
 db = scoped_session(sessionmaker(bind=engine))
 
+# create an instance of Flask class
 app = Flask(__name__)
 
 # Check for environment variable
@@ -29,7 +30,7 @@ def main():
         print(f"Title : {book.title} written by {book.author} in {book.year}.")
     print()
 
-    # List all books published @1998
+    # List all books published @1998: just an example
     books_found = db.execute("select * from books where year=1998;").fetchall()
     for book in books_found:
         print(f"Book published at 1998 : {book.title} written by {book.author} in {book.year}.")
@@ -53,7 +54,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+    app.run(debug=True) #  python3 application.py REPLACEs flask run
 
+# set up the homepage
 @app.route("/", methods=["GET", "POST"])
 def index():
     now = datetime.datetime.now()
@@ -68,8 +71,12 @@ def index():
     if request.method == "POST":
         review = request.form.get("review")
         session["reviews"].append(review)
-    index_page = render_template("index.html", title=title, headline=headline, body=body, new_year=new_year, reviews = session["reviews"])
-    return index_page
+    return render_template("index.html", title=title, headline=headline, body=body, new_year=new_year, reviews = session["reviews"])
+
+# to do: add description of this website in about.html
+@app.route("/about")
+def about():
+    return "<h1>About Page</h1>"
 
 @app.route("/user")
 def user():

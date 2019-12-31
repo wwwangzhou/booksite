@@ -26,10 +26,14 @@ def index():
     title = "bookees"
     headline = "Welcome to the booksite!"
     body = "Is today New Year ?"
+
+    if session.get("reviews") is None:
+        session["reviews"] = []
+
     if request.method == "POST":
         review = request.form.get("review")
-        reviews.append(review)
-    index_page = render_template("index.html", title=title, headline=headline, body=body, new_year=new_year, reviews = reviews)
+        session["reviews"].append(review)
+    index_page = render_template("index.html", title=title, headline=headline, body=body, new_year=new_year, reviews = session["reviews"])
     return index_page
 
 @app.route("/user")

@@ -5,7 +5,10 @@ from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
+# bridge the connection between Python and Database
 engine = create_engine(os.getenv("DATABASE_URL"))
+
+# allow each user have her/his own workspace
 db = scoped_session(sessionmaker(bind=engine))
 
 app = Flask(__name__)

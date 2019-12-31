@@ -96,7 +96,7 @@ def index():
 # to do: add description of this website in about.html
 @app.route("/about")
 def about():
-    return "<h1>About Page</h1>"
+    return render_template("about.html")
 
 # to do: user management section
 @app.route("/user")

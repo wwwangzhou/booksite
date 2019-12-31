@@ -1,22 +1,10 @@
 {% extends "layout.html" %}
 
-{% block title %}
-    {{ title }}
-{% endblock %}
+{% block title %} {{ title }} {% endblock %}
 
-{% block heading %}
-    {{ headline }}
-{% endblock %}
+{% block heading %} {{ headline }} {% endblock %}
 
 {% block body %}
-
-    {{ body }}
-    {% if new_year %}
-         <h1>Yes! Happy New Year!</h1>
-    {% else %}
-         <h1>NO</h1>
-    {% endif %}
-
     <ul>
         {% for review in reviews %}
             <li>{{ review }}</li>

@@ -52,6 +52,24 @@ def main():
         if len(books) == 0:
             print("No books found.")
 
+# Dummy reviews
+posts = [
+    {
+        'user_name': 'Corey Schafer',
+        'book_title': 'The Gangester we are looking for',
+        'comment': "I don't know how time moves or which of our sorrows or our desires it is able to wash away.",
+        'date_reviewed': 'Dec 31, 2019',
+        'rating': '5'
+    },
+    {
+        'user_id': 'Jane Doe',
+        'book_title': 'Into the wild',
+        'comment': "you really should make a radical change in your lifestyle and begin to boldly do things which you may previously never have thought of doing, or been too hesitant to attempt. So many people live within unhappy circumstances and yet will not take the initiative to change their situation because they are conditioned to a life of security, conformity, and conservatism, all of which may appear to give one peace of mind, but in reality nothing is more damaging to the adventurous spirit within a man than a secure future. The very basic core of a man's living spirit is his passion for adventure. The joy of life comes from our encounters with new experiences, and hence there is no greater joy than to have an endlessly changing horizon, for each day to have a new and different sun.",
+        'date_reviewed': 'Jan 1, 2020',
+        'rating': '5'
+    }
+]
+
 if __name__ == "__main__":
     main()
     app.run(debug=True) #  python3 application.py REPLACEs flask run
@@ -63,15 +81,13 @@ def index():
     new_year = now.month == 1 and now.day == 1
     title = "bookees"
     headline = "Welcome to the booksite!"
-    body = "Is today New Year ?"
-
     if session.get("reviews") is None:
         session["reviews"] = []
 
     if request.method == "POST":
         review = request.form.get("review")
         session["reviews"].append(review)
-    return render_template("index.html", title=title, headline=headline, body=body, new_year=new_year, reviews = session["reviews"])
+    return render_template("index.html", title=title, headline=headline, posts=posts, new_year=new_year, reviews = session["reviews"])
 
 # to do: add description of this website in about.html
 @app.route("/about")

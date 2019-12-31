@@ -4,9 +4,19 @@
 
 {% block heading %} {{ headline }} {% endblock %}
 
+
 {% block body %}
-   {% for review in reviews %}
-      <li>{{ review }}</li>
+   {% for post in posts %}
+      <article class="media content-section">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="#">{{ post.user_name }}</a>
+            <small class="text-muted">{{ post.date_reviewed }}</small>
+          </div>
+          <h2><a class="article-title" href="#">{{ post.book_title }}</a></h2>
+          <p class="article-content">{{ post.comment }}</p>
+        </div>
+      </article>
    {% endfor %}
 
    {% for post in posts %}
@@ -14,6 +24,10 @@
       <p>By {{ post.user_name }} on {{ post.date_reviewed }}</p>
       <p>{{post.comment}}</p>
       <p>rating : {{post.rating}}</p>
+   {% endfor %}
+
+   {% for review in reviews %}
+      <li>{{ review }}</li>
    {% endfor %}
 
    <form action="{{ url_for('index') }}" method="post">

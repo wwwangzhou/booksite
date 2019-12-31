@@ -77,17 +77,21 @@ if __name__ == "__main__":
 # set up the homepage
 @app.route("/", methods=["GET", "POST"])
 def index():
-    now = datetime.datetime.now()
-    new_year = now.month == 1 and now.day == 1
     title = "bookees"
     headline = "Welcome to the booksite!"
+
+    # intialize only once when making get request for the first time
     if session.get("reviews") is None:
         session["reviews"] = []
 
+    # process post request: either add new or ignore duplicate entry
     if request.method == "POST":
         review = request.form.get("review")
-        session["reviews"].append(review)
-    return render_template("index.html", title=title, headline=headline, posts=posts, new_year=new_year, reviews = session["reviews"])
+        if review not in session["reviews"]:
+            session["reviews"].append(review)
+
+    # render the hompage index.html
+    return render_template("index.html", title=title, headline=headline, posts=posts, reviews = session["reviews"])
 
 # to do: add description of this website in about.html
 @app.route("/about")

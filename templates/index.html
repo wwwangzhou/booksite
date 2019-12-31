@@ -4,15 +4,26 @@
 
 {% block heading %} {{ headline }} {% endblock %}
 
-{% block body %}
-    <ul>
-        {% for review in reviews %}
-            <li>{{ review }}</li>
-        {% endfor %}
-    </ul>
+'user_name': 'Corey Schafer',
+'book_title': 'The Gangester we are looking for',
+'comment': "I don't know how time moves or which of our sorrows or our desires it is able to wash away.",
+'date_reviewed': 'Dec 31, 2019',
+'rating': '5'
 
-    <form action="{{ url_for('index') }}" method="post">
-        <input type="text" name="review" placeholder="Type your review here">
-        <button>Add review</button>
-    </form>
+{% block body %}
+   {% for review in reviews %}
+      <li>{{ review }}</li>
+   {% endfor %}
+
+   {% for post in posts %}
+      <h1>{{ post.book_title }}</h1>
+      <p>By {{ post.user_name }} on {{ post.date_reviewed }}</p>
+      <p>{{post.comment}}</p>
+      <p>rating : {{post.rating}}</p>   
+   {% endfor %}
+
+   <form action="{{ url_for('index') }}" method="post">
+       <input type="text" name="review" placeholder="Type your review here">
+       <button>Add review</button>
+   </form>
 {% endblock %}

@@ -16,13 +16,11 @@
 
         deactivate
         
-- to delete the virtual enviroment  <br>
-
-        rm -rf bookees_env
- 
  - to intall all packages used in this project 
 
         pip install -r requirements.txt 
         
-       
-               
+  - to delete the virtual enviroment  <br>
+
+        rm -rf bookees_env     
+           

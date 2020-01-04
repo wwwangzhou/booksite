@@ -24,3 +24,17 @@
 
         rm -rf bookees_env     
            
+## To create database in terminal using SQLite
+- import modesl from booksite package
+
+       from booksite.models import User, Post
+        
+- create locak db file
+
+       db.create_all()
+        
+- to make query
+
+       User.query.all()
+           
+           

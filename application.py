@@ -1,5 +1,4 @@
 import os,datetime, csv
-from datetime import datetime
 
 from flask import Flask,render_template, session, request, url_for, flash, redirect
 from flask_session import Session

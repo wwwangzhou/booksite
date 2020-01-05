@@ -1,6 +1,9 @@
+import os
+import secrets
+from PIL import Image
 from flask import render_template, session, request, url_for, flash, redirect, request
 from booksite import app, db, bcrypt
-from booksite.forms import RegistrationForm, LoginForm
+from booksite.forms import RegistrationForm, LoginForm, PostForm
 from booksite.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -88,7 +91,15 @@ def logout():
 def account():
     return render_template('account.html', title='Account')
 
-# to do: user management section
 @app.route("/user")
 def user():
     return "User page"
+
+@app.route("/post/new", methods=['GET', 'POST'])
+@login_required
+def new_post():
+    form = PostForm()
+    # if form.validate_on_submit():
+    #     flash('Your post is there now, success!')
+    #     return redirect(url_for('index'))
+    return render_template('create_post.html', title='New Post', form=form)

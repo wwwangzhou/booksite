@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__) # create an instance of Flask class
 
@@ -25,5 +26,7 @@ db = SQLAlchemy(app) # For app initialization
 # app.config["SESSION_PERMANENT"] = False
 # app.config["SESSION_TYPE"] = "filesystem"
 # Session(app)
+
+bcrypt = Bcrypt(app)
 
 from booksite import routes

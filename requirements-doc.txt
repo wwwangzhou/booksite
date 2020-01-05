@@ -4,4 +4,4 @@ psycopg2-binary
 SQLAlchemy
 flask_sqlalchemy
 flask_wtf
-flask-bcrypt 
+flask-bcrypt  - - - for hashing algorithm 

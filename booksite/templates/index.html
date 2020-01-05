@@ -18,7 +18,8 @@
       </article>
    {% endfor %}
 
-   {% for post in posts %}
+<!-- Debug START -->
+   <!-- {% for post in posts %}
       <h1>{{ post.title}}</h1>
       <p>By {{ post.author.username }} on {{ post.date_posted }}</p>
       <p>{{post.content}}</p>
@@ -27,10 +28,11 @@
 
    {% for review in reviews %}
       <li>{{ review }}</li>
-   {% endfor %}
+   {% endfor %} -->
+<!-- Debug END -->
 
-   <form action="{{ url_for('index') }}" method="post">
+   <!-- <form action="{{ url_for('index') }}" method="post">
        <input type="text" name="review" placeholder="Type your review here">
        <button>Add review</button>
-   </form>
+   </form> -->
 {% endblock body%} # explict ending of the block

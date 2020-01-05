@@ -1,4 +1,4 @@
-from flask import render_template, session, request, url_for, flash, redirect
+from flask import render_template, session, request, url_for, flash, redirect, request
 from booksite import app, db, bcrypt
 from booksite.forms import RegistrationForm, LoginForm
 from booksite.models import User, Post
@@ -86,7 +86,7 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-    return render_template('raccount.html', title='Account')
+    return render_template('account.html', title='Account')
 
 # to do: user management section
 @app.route("/user")

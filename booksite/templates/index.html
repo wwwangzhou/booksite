@@ -9,19 +9,19 @@
       <article class="media content-section">
         <div class="media-body">
           <div class="article-metadata">
-            <a class="mr-2" href="#">{{ post.user_name }}</a>
-            <small class="text-muted">{{ post.date_reviewed }}</small>
+            <a class="mr-2" href="#">{{ post.author.username  }}</a>
+            <small class="text-muted">{{ post.date_posted }}</small>
           </div>
-          <h2><a class="article-title" href="#">{{ post.book_title }}</a></h2>
-          <p class="article-content">{{ post.comment }}</p>
+          <h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+          <p class="article-content">{{ post.content }}</p>
         </div>
       </article>
    {% endfor %}
 
    {% for post in posts %}
-      <h1>{{ post.book_title }}</h1>
-      <p>By {{ post.user_name }} on {{ post.date_reviewed }}</p>
-      <p>{{post.comment}}</p>
+      <h1>{{ post.title}}</h1>
+      <p>By {{ post.author.username }} on {{ post.date_posted }}</p>
+      <p>{{post.content}}</p>
       <p>rating : {{post.rating}}</p>
    {% endfor %}
 

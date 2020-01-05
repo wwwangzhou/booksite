@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block heading %} {{ headline }} {% endblock %}
+
+{% block body %}
+   <article class="media content-section">
+     <div class="media-body">
+       <div class="article-metadata">
+         <a class="mr-2" href="#">{{ post.author.username  }}</a>
+         <small class="text-muted">{{ post.date_posted }}</small>
+			<a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('update_post', post_id=post.id) }}">Update</a>
+			<button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
+       </div>
+       <h2 class="article-title">{{ post.title }}</h2>
+       <p class="article-content">{{ post.content }}</p>
+     </div>
+   </article>
+{% endblock body%} # explict ending of the block

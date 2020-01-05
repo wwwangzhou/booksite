@@ -2,6 +2,7 @@ from flask import render_template, session, request, url_for, flash, redirect
 from booksite import app, db, bcrypt
 from booksite.forms import RegistrationForm, LoginForm
 from booksite.models import User, Post
+from flask_login import login_user, current_user, logout_user, login_required
 
 # Dummy reviews
 posts = [
@@ -47,12 +48,14 @@ def about():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit(): # if valid, hash ps and save it to database db
         # generate one time alert.
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-        
+
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')
@@ -61,14 +64,29 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == 'zouwang@ucdavis.edu' and form.password.data == 'wang':
+        user = User.query.filter_by(email=form.email.data).first() # database query for matching user if there is
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            next_page = request.args.get('next')
             flash('You have been logged in!', 'success')
-            return redirect(url_for('index'))
+            return redirect(next_page) if next_page else redirect(url_for('index'))
         else:
-            flash('Login Unsuccessful. Please check username and password', 'danger')
+            flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+@app.route("/account")
+@login_required
+def account():
+    return render_template('account.html', title='Account')
 
 # to do: user management section
 @app.route("/user")

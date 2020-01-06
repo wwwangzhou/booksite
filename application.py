@@ -29,10 +29,9 @@
 
 from booksite import app
 
-def create_app():
-    # if __name__ == "__main__":
-        # main()
-        app.run(debug=True) #  python3 application.py REPLACEs flask run
+if __name__ == "__main__":
+    # main()
+    app.run(debug=True) #  python3 application.py REPLACEs flask run
 # @app.route("/<string:name>")
 # def hello(name):
 #     name = name.capitalize()

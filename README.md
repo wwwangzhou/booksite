@@ -4,7 +4,7 @@
 
 - Utilized Python Framework Flask to set up server, and used a third-party API by Goodreads, another book review website, to allow users browse a broader set of reviews.
 
-## To run local host
+## To run on local host
 - set envirotonal variable FLASK_APP 
         
         export FLASK_APP=application.py
@@ -71,7 +71,7 @@
         db.drop_all()
         db.create_all()
            
-# Deploy on Heroku
+## Deploy on Heroku
 - check database url and make sure it is set to the the psql url on heroku
   
         heroku config

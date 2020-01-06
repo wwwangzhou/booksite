@@ -4,6 +4,16 @@
 
 - Utilized Python Framework Flask to set up server, and used a third-party API by Goodreads, another book review website, to allow users browse a broader set of reviews.
 
+## To run local host
+- set envirotonal variable FLASK_APP 
+        
+        export FLASK_APP=application.py
+        
+- set debug mode for development
+
+        export FLASK_ENV=development 
+- run
+        flask run
 ## To set up virtual environment
 - make a virtual enviroment 
 

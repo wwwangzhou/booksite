@@ -1,5 +1,6 @@
 # A  a book review website
 - A website that let user register and log in and allows user search and write reviews for a particular book and see the reviews made by others.
+- Bookees is a place for you note segements from books when you feel like these words entails wisdom after daily reading.
 
 - Utilized Python Framework Flask to set up server, and used a third-party API by Goodreads, another book review website, to allow users browse a broader set of reviews.
 
@@ -37,4 +38,13 @@
 
        User.query.all()
            
-           
+# Deploy on Heroku
+- check database url and make sure it is set to the the psql url on heroku
+  
+        heroku config
+- create an file **Procfile** @ your repo directory booksite with the line below:
+        
+        web: gunicorn booksite.wsgi
+        
+- create wsgi.py @ your repo sub-directory booksite
+- more info at https://devcenter.heroku.com/articles/python-gunicorn

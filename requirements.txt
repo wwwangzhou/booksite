@@ -6,3 +6,4 @@ flask_sqlalchemy
 flask_wtf
 flask-bcrypt
 flask_login
+gunicorn
